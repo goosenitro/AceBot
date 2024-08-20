@@ -25,7 +25,7 @@ local img = Instance.new("Frame")
 local UIListLayout_5 = Instance.new("UIListLayout")
 local ImageButton = Instance.new("ImageButton")
 
-Notifications.Name = "Notifications"
+Notifications.Name = "CoolNotificationsLibrary"
 Notifications.Parent = Player:WaitForChild("PlayerGui")
 Notifications.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -224,6 +224,24 @@ ImageButton.BorderColor3 = Color3.new(0, 0, 0)
 ImageButton.BorderSizePixel = 0
 ImageButton.Size = UDim2.new(0, 12, 0, 12)
 ImageButton.Image = "http://www.roblox.com/asset/?id=100236834104612"
+
+if gethui then
+	for _, Interface in ipairs(gethui():GetChildren()) do
+		if Interface.Name == 'CoolNotificationsLibrary' and Interface ~= Notifications then
+			Interface:Destroy()
+		end
+	end
+	
+	Notifications:gethui()
+else
+	for _, Interface in ipairs(game.CoreGui:GetChildren()) do
+		if Interface.Name == 'CoolNotificationsLibrary' and Interface ~= Notifications then
+			Interface:Destroy()
+		end
+	end
+	
+	Notifications.Parent = game.CoreGui
+end
 
 local module = {}
 
