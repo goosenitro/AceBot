@@ -1,24 +1,5 @@
 local Player = game:GetService('Players').LocalPlayer
 
-local colours = {
-	['info'] = {
-		['icon'] = '114502481578086',
-		['colour'] = Color3.new(28, 202, 253)
-	},
-	['warning'] = {
-		['icon'] = '135416664306158',
-		['colour'] = Color3.new(245, 205, 45)
-	},
-	['err'] = {
-		['icon'] = '123773354586892',
-		['colour'] = Color3.new(238, 55, 111)
-	},
-	['success'] = {
-		['icon'] = '137417589492074',
-		['colour'] = Color3.new(53, 192, 111)		
-	}
-}
-
 local Notifications = Instance.new("ScreenGui")
 local Container = Instance.new("Frame")
 local UIPadding = Instance.new("UIPadding")
@@ -260,6 +241,12 @@ function module.new(type_, message)
 	
 	frame.img.ImageButton.MouseButton1Up:Connect(function()
 		frame:Destroy()
+	end)
+	
+	task.spawn(function()
+		task.wait(8)
+		
+		if frame then frame:Destroy() end
 	end)
 end
 
