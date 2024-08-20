@@ -232,7 +232,7 @@ if gethui then
 		end
 	end
 	
-	Notifications:gethui()
+	Notifications.Parent = gethui()
 else
 	for _, Interface in ipairs(game.CoreGui:GetChildren()) do
 		if Interface.Name == 'CoolNotificationsLibrary' and Interface ~= Notifications then
