@@ -161,6 +161,7 @@ info_2.Font = Enum.Font.MontserratBold
 info_2.Text = "text"
 info_2.TextColor3 = Color3.new(0.109804, 0.792157, 0.992157)
 info_2.TextSize = 14
+info_2.AutomaticSize = Enum.AutomaticSize.XY
 
 success_2.Name = "success"
 success_2.Parent = labels
@@ -173,6 +174,7 @@ success_2.Font = Enum.Font.MontserratBold
 success_2.Text = "text"
 success_2.TextColor3 = Color3.new(0.207843, 0.752941, 0.435294)
 success_2.TextSize = 14
+success_2.AutomaticSize = Enum.AutomaticSize.XY
 
 err_2.Name = "err"
 err_2.Parent = labels
@@ -185,6 +187,7 @@ err_2.Font = Enum.Font.MontserratBold
 err_2.Text = "text"
 err_2.TextColor3 = Color3.new(0.933333, 0.215686, 0.435294)
 err_2.TextSize = 14
+err_2.AutomaticSize = Enum.AutomaticSize.XY
 
 warning_2.Name = "warning"
 warning_2.Parent = labels
@@ -197,6 +200,7 @@ warning_2.Font = Enum.Font.MontserratBold
 warning_2.Text = "text"
 warning_2.TextColor3 = Color3.new(0.960784, 0.803922, 0.176471)
 warning_2.TextSize = 14
+warning_2.AutomaticSize = Enum.AutomaticSize.XY
 
 img.Name = "img"
 img.Parent = Template
@@ -223,8 +227,10 @@ ImageButton.Image = "http://www.roblox.com/asset/?id=100236834104612"
 
 local module = {}
 
-function module.new(type_, message)
+function module.new(type_, message, duration)
 	type_ = string.lower(type_)
+	
+	if not duration then duration = 8 end
 	
 	if not table.find({'info','warning','err','success'}, type_) then return warn('Invalid notification type provided.') end
 	
@@ -244,7 +250,7 @@ function module.new(type_, message)
 	end)
 	
 	task.spawn(function()
-		task.wait(8)
+		task.wait(duration)
 		
 		if frame then frame:Destroy() end
 	end)
